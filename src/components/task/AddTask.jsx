@@ -67,6 +67,7 @@ const AddTask = ({ open, setOpen, task }) => {
         stage,
         priority,
       };
+      
       const res = task?._id 
       ? await updateTask({...newData, _id: task._id}).unwrap()
       : await createTask(newData).unwrap()
@@ -89,6 +90,7 @@ const AddTask = ({ open, setOpen, task }) => {
     const name = new Date().getTime() + file.name;
     const storageRef = ref(storage, name)
     const uploadTask = uploadBytesResumable(storageRef, file)
+
     return new Promise((resolve, reject) => {
       uploadTask.on("state_changed", (snapshot) => {console.log("Uploading")},
      (error) => {reject(error)},
