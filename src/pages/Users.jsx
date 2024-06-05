@@ -43,7 +43,7 @@ const Users = () => {
     try {
        const result = await deleteUser(selected)
        refetch()
-       toast.success(res?.data?.message)
+       toast.success(result?.data?.message)
        setSelected(null)
        setTimeout(() => {
         setOpenDialog(false)

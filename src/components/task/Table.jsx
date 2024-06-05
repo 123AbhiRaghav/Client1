@@ -11,6 +11,7 @@ import UserInfo from '../UserInfo'
 import { BGS, formatDate } from "../../utils"
 import ConfirmationDialog from "../Dialogs"
 import {useTrashTaskMutation} from '../../redux/slices/taskApiSlice'
+import AddTask from "./AddTask"
 const ICONS = {
     high : <MdKeyboardDoubleArrowUp />,
     medium: <MdKeyboardArrowUp />,
@@ -20,12 +21,21 @@ const ICONS = {
 const Table = ({tasks}) => {
     const [openDialog, setOpenDialog] = useState(false)
     const [selected, setSelected] = useState(null)
+    const [openEdit, setOpenEdit] = useState(false);
+
+    const [trashTask] = useTrashTaskMutation()
 
     const deleteClicks = (id) => {
       setSelected(id)
       setOpenDialog(true)
     }
-   const [trashTask] = useTrashTaskMutation()
+
+    const editTaskHandler = (el) => {
+      setSelected(el)
+      setOpenEdit(true);
+    }
+
+
     const deleteHandler = async() => {
       try {
           const result = await trashTask({
@@ -124,6 +134,7 @@ const Table = ({tasks}) => {
               className='text-blue-600 hover:text-blue-500 sm:px-0 text-sm md:text-base'
               label='Edit'
               type='button'
+              onClick={() => editTaskHandler(task)}
             />
     
             <Button
@@ -156,6 +167,13 @@ const Table = ({tasks}) => {
       open={openDialog}
       setOpen = {setOpenDialog}
       onClick = {deleteHandler}
+      />
+
+<AddTask
+        open={openEdit}
+        setOpen={setOpenEdit}
+        task={selected}
+        key={new Date().getTime()}
       />
     </>
   )

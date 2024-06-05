@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   MdDelete,
   MdKeyboardArrowDown,
@@ -33,7 +33,7 @@ const Trash = () => {
 
   const {data, isLoading, refetch} = useGetAllTasksQuery({
   strQuery: "",
-  isTrashed: "",
+  isTrashed: "true",
   search: "",
   })
 
@@ -187,7 +187,7 @@ const Trash = () => {
             <table className='w-full mb-5'>
               <TableHeader />
               <tbody>
-                {tasks?.map((tk, id) => (
+                {data?.tasks?.map((tk, id) => (
                   <TableRow key={id} item={tk} />
                 ))}
               </tbody>
