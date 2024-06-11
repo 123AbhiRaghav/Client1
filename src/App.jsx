@@ -36,7 +36,7 @@ function Layout(){
     </div>
   </div>
   ) : (
-    <Navigate to="/log-in" state={{from: location}} replace />
+    <Navigate to="/login" state={{from: location}} replace />
   )
 }
 
@@ -107,7 +107,7 @@ function App() {
         <Route path="/task/:id" element={<TaskDetails />}></Route>
         </Route>
 
-        <Route path="/log-in" element={<Login />}></Route>
+        <Route path="/login" element={<Login />}></Route>
       </Routes>
       <Toaster richColors />
     </main>
