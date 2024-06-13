@@ -3,13 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "VITE_APP_BASE_URL",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy": "VITE_APP_BASE_URL",
   "dependencies": {
     "@headlessui/react": "^2.0.3",
     "@reduxjs/toolkit": "^2.2.5",
